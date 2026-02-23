@@ -47,9 +47,6 @@ const GuestView = ({ onUpgrade }) => {
         setShowMagazinePrompt(true);
     };
 
-    const confirmMagazineSubscription = () => {
-        window.location.href = "mailto:mwanikanyi@gmail.com?subject=Frone AI Magazine Subscription Request";
-    };
 
     return (
         <div className="grid grid-cols-12 gap-6 pb-20">
@@ -156,15 +153,13 @@ const GuestView = ({ onUpgrade }) => {
                         <p className="text-white/40 text-xs leading-relaxed mb-8 italic uppercase tracking-widest">
                             We will get back to you within 48 hours with all the details and your enhanced demo access.
                         </p>
-                        <button
-                            onClick={() => {
-                                confirmMagazineSubscription();
-                                setShowMagazinePrompt(false);
-                            }}
-                            className="w-full py-4 bg-[#05fc00] text-[#080809] text-[10px] font-bold tracking-widest uppercase hover:bg-white transition-all"
+                        <a
+                            href="mailto:mwanikanyi@gmail.com?subject=Frone AI Magazine Subscription Request"
+                            onClick={() => setShowMagazinePrompt(false)}
+                            className="w-full py-4 bg-[#05fc00] text-[#080809] text-[10px] font-bold tracking-widest uppercase hover:bg-white transition-all inline-block no-underline"
                         >
                             PROCEED TO EMAIL
-                        </button>
+                        </a>
                     </motion.div>
                 </div>
             )}
