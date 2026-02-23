@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Lock, Sparkles, Shield, Cpu, MessageCircle, ArrowRight, Mail } from 'lucide-react';
+import { Play, Lock, Sparkles, Shield, Cpu, MessageCircle, ArrowRight, Mail, MessageSquare } from 'lucide-react';
 import IntelligenceLoop from '../../IntelligenceLoop';
 
 const DemoCard = ({ title, description, icon: Icon, delay, onPlay, isActive }) => (
@@ -148,17 +148,19 @@ const GuestView = ({ onUpgrade }) => {
                         animate={{ opacity: 1, scale: 1 }}
                         className="glass max-w-md w-full p-10 ring-1 ring-[#05fc00]/30 text-center"
                     >
-                        <Mail className="w-12 h-12 text-[#05fc00] mx-auto mb-6" strokeWidth={1.5} />
+                        <MessageSquare className="w-12 h-12 text-[#05fc00] mx-auto mb-6" strokeWidth={1.5} />
                         <h3 className="text-xl font-light mb-4">Subscription Request</h3>
                         <p className="text-white/40 text-xs leading-relaxed mb-8 italic uppercase tracking-widest">
                             We will get back to you within 48 hours with all the details and your enhanced demo access.
                         </p>
                         <a
-                            href="mailto:mwanikanyi@gmail.com?subject=Frone AI Magazine Subscription Request"
+                            href="https://wa.me/254113786674?text=I%20would%20like%20to%20subscribe%20to%20Frone%20AI%20Magazine"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onClick={() => setShowMagazinePrompt(false)}
                             className="w-full py-4 bg-[#05fc00] text-[#080809] text-[10px] font-bold tracking-widest uppercase hover:bg-white transition-all inline-block no-underline"
                         >
-                            PROCEED TO EMAIL
+                            PROCEED TO WHATSAPP
                         </a>
                     </motion.div>
                 </div>
