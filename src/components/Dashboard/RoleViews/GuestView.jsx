@@ -27,34 +27,89 @@ const DemoCard = ({ title, description, icon: Icon, delay, onPlay, isActive }) =
 
 const GuestView = ({ onUpgrade }) => {
     const [activeScenario, setActiveScenario] = useState(null);
+    const [showSiteVisitPrompt, setShowSiteVisitPrompt] = useState(false);
 
     const toggleScenario = (id) => {
         setActiveScenario(id);
     };
+
+    const handleSiteVisitRequest = () => {
+        setShowSiteVisitPrompt(true);
+    };
+
+    const confirmSiteVisit = () => {
+        window.open('https://wa.me/254113786674', '_blank');
+        setShowSiteVisitPrompt(false);
+    };
+
     return (
         <div className="grid grid-cols-12 gap-6 pb-20">
 
-            {/* Welcome Banner */}
+            {/* Mission & Impact Section */}
             <div className="col-span-12 glass p-12 ring-1 ring-[#05fc00]/20 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#05fc00]/10 to-transparent pointer-events-none" />
-                <div className="relative z-10 max-w-2xl">
-                    <span className="text-[10px] uppercase tracking-[0.4em] text-[#05fc00] mb-4 block underline underline-offset-8">Onboarding Protocol</span>
-                    <h2 className="text-4xl md:text-5xl font-light mb-6">Welcome to the <span className="font-serif italic organic-text">Genesis</span> Trial</h2>
-                    <p className="text-white/40 text-sm font-light leading-relaxed mb-8">
-                        Experience the core of Frone AI. In this registered trial mode, you can explore the 3D Digital Twin and replay verified detection scenarios. To access live drone feeds and operational control, an upgrade is required.
-                    </p>
-                    <div className="flex gap-4">
-                        <div className="px-4 py-2 glass rounded ring-1 ring-white/5">
-                            <span className="text-[10px] block opacity-30 mb-1">MONITORED ACRES</span>
-                            <span className="text-xl font-light">120 <span className="text-xs opacity-50 font-sans italic">Trial Zone</span></span>
+                <div className="relative z-10 max-w-3xl">
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-[#05fc00] mb-4 block underline underline-offset-8">Intelligence Overview</span>
+                    <h2 className="text-4xl md:text-5xl font-light mb-6">Our <span className="font-serif italic organic-text">Purpose</span> & Impact</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+                        <div>
+                            <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-4 text-white/80">Who We Are</h3>
+                            <p className="text-white/40 text-sm font-light leading-relaxed mb-6 italic">
+                                Frone AI is a synthesized intelligence layer for Earth's most vulnerable ecosystems. We bridge the gap between high-altitude satellite data and ground-level reality using autonomous drone networks.
+                            </p>
+                            <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-4 text-white/80">Environmental Impact</h3>
+                            <p className="text-white/40 text-sm font-light leading-relaxed italic">
+                                Our primary focus is the preservation of biodiversity and carbon sequestration. By detecting illegal logging, charcoal burning, and wildfires in real-time, we prevent irreversible environmental degradation.
+                            </p>
                         </div>
-                        <div className="px-4 py-2 glass rounded ring-1 ring-white/5">
-                            <span className="text-[10px] block opacity-30 mb-1">VIRTUAL SENSORS</span>
-                            <span className="text-xl font-light">18 <span className="text-xs opacity-50 font-sans italic">Online</span></span>
+
+                        <div className="glass p-8 ring-1 ring-white/10 flex flex-col justify-center">
+                            <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-4 text-[#05fc00]">Adopt Our Solution</h3>
+                            <p className="text-xs text-white/40 leading-relaxed mb-8 uppercase tracking-widest italic">
+                                Do you own or manage land that requires advanced protection and intelligence? Transform your property into a high-security ecological zone.
+                            </p>
+                            <button
+                                onClick={handleSiteVisitRequest}
+                                className="w-full py-4 glass ring-1 ring-[#05fc00]/40 text-[#05fc00] text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-[#05fc00]/10 transition-all"
+                            >
+                                REQUEST A SITE VISIT
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Site Visit Prompt Modal */}
+            {showSiteVisitPrompt && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-md bg-black/60">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="glass max-w-md w-full p-10 ring-1 ring-[#05fc00]/30 text-center"
+                    >
+                        <MessageCircle className="w-12 h-12 text-[#05fc00] mx-auto mb-6" strokeWidth={1.5} />
+                        <h3 className="text-xl font-light mb-4">Confirm Site Visit Request</h3>
+                        <p className="text-white/40 text-xs leading-relaxed mb-8 italic uppercase tracking-widest">
+                            Would you like to adopt Frone AI's autonomous solution for your land? You will be connected directly to our implementation team via WhatsApp.
+                        </p>
+                        <div className="flex gap-4">
+                            <button
+                                onClick={() => setShowSiteVisitPrompt(false)}
+                                className="flex-1 py-3 text-[10px] font-bold tracking-widest text-white/30 uppercase hover:text-white transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={confirmSiteVisit}
+                                className="flex-1 py-3 bg-[#05fc00] text-[#080809] text-[10px] font-bold tracking-widest uppercase hover:bg-white transition-all"
+                            >
+                                OK, Let's Protect
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
 
             {/* Demo Digital Twin Placeholder */}
             <div className="col-span-12 lg:col-span-8 h-[450px] glass ring-1 ring-white/5 flex flex-col items-center justify-center relative group">
@@ -96,7 +151,7 @@ const GuestView = ({ onUpgrade }) => {
                 <DemoCard
                     title="Wildfire Response"
                     description="Witness how thermal sensors and smoke particles trigger an autonomous drone verify loop."
-                    icon={Sparkle}
+                    icon={Sparkles}
                     delay={0.1}
                     onPlay={() => toggleScenario('Wildfire')}
                     isActive={activeScenario === 'Wildfire'}
