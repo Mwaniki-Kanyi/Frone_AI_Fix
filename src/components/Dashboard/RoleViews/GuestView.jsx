@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Lock, Sparkles, Shield, Cpu, MessageCircle, ArrowRight } from 'lucide-react';
+import { Play, Lock, Sparkles, Shield, Cpu, MessageCircle, ArrowRight, Mail } from 'lucide-react';
 import IntelligenceLoop from '../../IntelligenceLoop';
 
 const DemoCard = ({ title, description, icon: Icon, delay, onPlay, isActive }) => (
